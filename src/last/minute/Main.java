@@ -6,6 +6,13 @@ import java.util.stream.Collectors;
 
 public class Main {
 
+    private static String A_EXAMPLE = "src/last/minute/a_example.txt";
+    private static String B_READ_ON = "src/last/minute/b_read_on.txt";
+    private static String C_INCUNANBULA = "src/last/minute/c_incunabula.txt";
+    private static String D_TOUGH_CHOICES = "src/last/minute/d_tough_choices.txt";
+    private static String E_SO_MANY_BOOKS = "src/last/minute/e_so_many_books.txt";
+    private static String F_LIBRARIES_OF_THE_WORLD = "src/last/minute/f_libraries_of_the_world.txt";
+
     public static void main(String[] args) throws FileNotFoundException, InterruptedException {
 
         HashMap<Integer, Book> books; // id -> score
@@ -19,12 +26,10 @@ public class Main {
         List<String> outputStrings = new ArrayList<>();
 
 
-        FileInputStream fileInputStream = new FileInputStream(
-                new File("C:\\Users\\hp\\Downloads\\a_example.txt"));
+        String path = new File(A_EXAMPLE).getAbsolutePath();
+        FileInputStream fileInputStream = new FileInputStream(path);
 
-
-
-        PrintWriter pw = new PrintWriter(new FileOutputStream("C:\\Users\\hp\\Downloads\\a3_example_output.txt"),true);
+        PrintWriter pw = new PrintWriter(new FileOutputStream("/Users/dshkokl/Desktop/results/a_example.txt"),true);
         // write your code here
         FastReader reader = new FastReader(fileInputStream);
 
