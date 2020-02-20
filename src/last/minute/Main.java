@@ -16,22 +16,20 @@ public class Main {
         int numberOfLibraries;
 
         FileInputStream fileInputStream = new FileInputStream(
-                new File("C:\\Users\\hp\\dev\\hashCode\\src\\last\\minute\\a_example.txt"));
+                new File("C:\\Users\\hp\\Downloads\\a_example.txt"));
 
         // write your code here
         FastReader reader = new FastReader(fileInputStream);
 
 
 //        String[] parts = firstLine.split(" ");
-//
-
 
         numberOfBooks = reader.nextInt();
         numberOfLibraries = reader.nextInt();
         daysForScaning = reader.nextInt();
 
-        System.out.println("noBooks: " + numberOfBooks + " noLibraries: " + numberOfLibraries
-                + " daysForScanning: " + daysForScaning);
+//        System.out.println("noBooks: " + numberOfBooks + " noLibraries: " + numberOfLibraries
+//                + " daysForScanning: " + daysForScaning);
 
         books = new HashMap<>(numberOfBooks);
 
@@ -39,7 +37,7 @@ public class Main {
             int score = reader.nextInt();
             books.put(i,new Book(i,score));
         }
-        System.out.println(books);
+
 
 
         libraries = new HashMap<>(numberOfLibraries);
@@ -63,22 +61,26 @@ public class Main {
             libraries.put(i,l);
         }
 
-        System.out.println("libraries: " + libraries);
-//        String scores = reader.nextLine();
-//        String[] scoresParts = scores.split(" ");
-//        for (int i = 0; i < scoresParts.length; i++){
-//
-//        }
-//
-//        libraries = new HashMap<>(numberOfLibraries);
-//
-//        String currLibrary;
-//        int lBooks;
-//        for (int i = 0; i < numberOfLibraries; i++){
-//            currLibrary = reader.nextLine();
-//
-//            String[] lParts = currLibrary.split(" ");
-//            lBooks = Integer.parseInt()
-//        }
+
+        CalculateScoreForLibrary calculator = new CalculateScoreForLibrary();
+        Library currentLibrary;
+        for (int i = 0; i < libraries.size(); i++){
+
+            currentLibrary = libraries.get(i);
+            double currScore = calculator.calculateScoreForBooks(
+                    currentLibrary.getSignUpDays(),
+                    currentLibrary.getBooks().size(),
+                    currentLibrary.getBooksPerDay(),
+                    0,
+                    currentLibrary.getScoreFromAll(),
+                    20, 20, 20, 20,
+                    currentLibrary.getScores(),
+                    0.5,
+                    20
+            );
+
+            System.out.println("for l: " + i + " score: " + currScore);
+        }
+        
     }
 }

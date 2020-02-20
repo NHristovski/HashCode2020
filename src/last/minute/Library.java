@@ -3,6 +3,7 @@ package last.minute;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Library {
     private List<Book> books;
@@ -50,5 +51,17 @@ public class Library {
 
     public void sort() {
         this.books.sort(Comparator.comparing(Book::getScore));
+    }
+
+    public int getScoreFromAll(){
+        return books.stream()
+                .mapToInt(Book::getScore)
+                .sum();
+    }
+
+    public List<Integer> getScores(){
+        return this.books.stream()
+                .map(Book::getScore)
+                .collect(Collectors.toList());
     }
 }
