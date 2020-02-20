@@ -1,19 +1,30 @@
 package last.minute;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Library {
+    private int id;
     private List<Book> books;
     private int signUpDays;
     private int booksPerDay;
 
-    public Library(int numBooks, int signUpDays, int booksPerDay) {
+    public Library(int id,int numBooks, int signUpDays, int booksPerDay) {
+        this.id = id;
         this.books = new ArrayList<>(numBooks);
         this.signUpDays = signUpDays;
         this.booksPerDay = booksPerDay;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public List<Book> getBooks() {
@@ -43,14 +54,17 @@ public class Library {
     @Override
     public String toString() {
         return "Library{" +
-                "books=" + books +
+                "id=" + id +
+                ", books=" + books +
                 ", signUpDays=" + signUpDays +
                 ", booksPerDay=" + booksPerDay +
                 '}';
     }
 
     public void sort() {
-        this.books.sort(Comparator.comparing(Book::getScore));
+        this.books = this.books.stream()
+        .sorted(Comparator.comparing(Book::getScore).reversed()).collect(Collectors.toList());
+
     }
 
     public int getScoreFromAll(){
@@ -63,5 +77,14 @@ public class Library {
         return this.books.stream()
                 .map(Book::getScore)
                 .collect(Collectors.toList());
+    }
+
+    public int getBSFS(int days){
+
+        //System.out.println("min of: " +  this.getBooks().size() +
+        //        "  and days " + days +  " * getBooksPerDay " + this.getBooksPerDay()
+       // + " = " + ( days * this.getBooksPerDay() ) );
+
+        return Math.max(0,Math.min(this.getBooks().size(),days * this.getBooksPerDay()));
     }
 }
