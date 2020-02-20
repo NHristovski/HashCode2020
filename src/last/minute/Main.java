@@ -15,15 +15,16 @@ public class Main {
         int numberOfLibraries;
         int dayForScaningBackup;
 
+        int counter = 0;
         List<String> outputStrings = new ArrayList<>();
 
 
         FileInputStream fileInputStream = new FileInputStream(
-                new File("C:\\Users\\hp\\Downloads\\e_so_many_books.txt"));
+                new File("C:\\Users\\hp\\Downloads\\f_libraries_of_the_world.txt"));
 
 
 
-        PrintWriter pw = new PrintWriter(new FileOutputStream("C:\\Users\\hp\\Downloads\\e1_example_output.txt"),true);
+        PrintWriter pw = new PrintWriter(new FileOutputStream("C:\\Users\\hp\\Downloads\\f2_example_output.txt"),true);
         // write your code here
         FastReader reader = new FastReader(fileInputStream);
 
@@ -173,6 +174,7 @@ public class Main {
                     dayForScaningBackup - (currentScanning.getSignUpDays()) - currentDay);
 
 //            System.out.println("numOfBooks that can be scanned: " + numOfBooksScanned);
+
             if(numOfBooksScanned != 0) {
                 outputStrings.add(currentScanning.getId() + " " + numOfBooksScanned);
 //                pw.println(currentScanning.getId() + " " + numOfBooksScanned);
@@ -182,22 +184,27 @@ public class Main {
 
             //System.out.println("currentDays now is: " + currentDay);
 
+            String concat = "";
             for (int j = 0; j < numOfBooksScanned; j++){
                 Book book = currentScanning.getBooks().get(j);
                 //pw.print(book.getId() + " ");
-                outputStrings.add(book.getId() + " ");
+                concat += book.getId() + " ";
+//                outputStrings.add(book.getId() + " ");
 
 //                System.out.print(book.getId() + " ");
             }
+            outputStrings.add(concat);
 //            System.out.println();
             if (numOfBooksScanned != 0) {
-                outputStrings.add("");
+
+                //outputStrings.add("");
+                counter++;
                 //pw.println();
             }
 
         }
 
-        pw.println(outputStrings.size());
+        pw.println(counter);
 
         for (String str: outputStrings){
             pw.println(str);
