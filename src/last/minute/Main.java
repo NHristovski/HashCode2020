@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        HashMap<Integer, Integer> books; // id -> score
+        HashMap<Integer, Book> books; // id -> score
         HashMap<Integer, Library> libraries;
         int daysForScaning;
         int numberOfBooks;
@@ -21,7 +21,7 @@ public class Main {
         // write your code here
         FastReader reader = new FastReader(fileInputStream);
 
-        
+
 //        String[] parts = firstLine.split(" ");
 //
 
@@ -37,7 +37,7 @@ public class Main {
 
         for (int i = 0; i < numberOfBooks; i++){
             int score = reader.nextInt();
-            books.put(i,score);
+            books.put(i,new Book(i,score));
         }
         System.out.println(books);
 
@@ -56,9 +56,10 @@ public class Main {
 
             for (int j = 0; j < currNumBooks; j++){
                 int currBookId = reader.nextInt();
-                l.getBookIds().add(currBookId);
+                l.getBooks().add(books.get(currBookId));
             }
 
+            l.sort();
             libraries.put(i,l);
         }
 

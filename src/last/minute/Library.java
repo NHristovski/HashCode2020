@@ -1,25 +1,26 @@
 package last.minute;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Library {
-    private List<Integer> bookIds;
+    private List<Book> books;
     private int signUpDays;
     private int booksPerDay;
 
     public Library(int numBooks, int signUpDays, int booksPerDay) {
-        this.bookIds = new ArrayList<>(numBooks);
+        this.books = new ArrayList<>(numBooks);
         this.signUpDays = signUpDays;
         this.booksPerDay = booksPerDay;
     }
 
-    public List<Integer> getBookIds() {
-        return bookIds;
+    public List<Book> getBooks() {
+        return books;
     }
 
-    public void setBookIds(List<Integer> bookIds) {
-        this.bookIds = bookIds;
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     public int getSignUpDays() {
@@ -41,9 +42,13 @@ public class Library {
     @Override
     public String toString() {
         return "Library{" +
-                "bookIds=" + bookIds +
+                "books=" + books +
                 ", signUpDays=" + signUpDays +
                 ", booksPerDay=" + booksPerDay +
                 '}';
+    }
+
+    public void sort() {
+        this.books.sort(Comparator.comparing(Book::getScore));
     }
 }
