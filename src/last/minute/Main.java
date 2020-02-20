@@ -20,11 +20,11 @@ public class Main {
 
 
         FileInputStream fileInputStream = new FileInputStream(
-                new File("C:\\Users\\hp\\Downloads\\f_libraries_of_the_world.txt"));
+                new File("C:\\Users\\hp\\Downloads\\a_example.txt"));
 
 
 
-        PrintWriter pw = new PrintWriter(new FileOutputStream("C:\\Users\\hp\\Downloads\\f2_example_output.txt"),true);
+        PrintWriter pw = new PrintWriter(new FileOutputStream("C:\\Users\\hp\\Downloads\\a3_example_output.txt"),true);
         // write your code here
         FastReader reader = new FastReader(fileInputStream);
 
@@ -178,6 +178,8 @@ public class Main {
             if(numOfBooksScanned != 0) {
                 outputStrings.add(currentScanning.getId() + " " + numOfBooksScanned);
 //                pw.println(currentScanning.getId() + " " + numOfBooksScanned);
+            }else{
+                continue;
             }
 //            System.out.println(currentScanning.getId() + " " + numOfBooksScanned);
             currentDay = currentDay + currentScanning.getSignUpDays();
